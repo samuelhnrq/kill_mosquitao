@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://backgrounds/bg_game.png" type="Texture" id=1]
 [ext_resource path="res://backgrounds/bg_folhas.png" type="Texture" id=2]
-[ext_resource path="res://sprites/canhao.png" type="Texture" id=3]
+[ext_resource path="res://cenas/player.tscn" type="PackedScene" id=3]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 15.389, 1209.64 )
+
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="bg_game" type="Sprite" parent="." index="0"]
 
@@ -18,11 +23,44 @@ texture = ExtResource( 2 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="canhao" type="Sprite" parent="." index="2"]
+[node name="canhao" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 540, 1783.19 )
-scale = Vector2( 0.278247, 0.278247 )
-texture = ExtResource( 3 )
+position = Vector2( 540, 1739.7 )
+scale = Vector2( 0.3, 0.3 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+
+position = Vector2( -50, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+
+position = Vector2( 27.8179, 0 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="4"]
+
+position = Vector2( 1068.4, 941.455 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 1.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+
+position = Vector2( 27.8179, 0 )
+shape = SubResource( 1 )
 
 
